@@ -1,7 +1,7 @@
 # 🌟 **ClustR** 🌟
 ### *Adaptive Self-Bootstrapping Document Classification System*  
 
-![Python](https://img.shields.io/badge/-Python_3.9-blue?style=for-the-badge&logo=python&logoColor=white)  
+![Python](https://img.shields.io/badge/-Python_3.10-blue?style=for-the-badge&logo=python&logoColor=white)  
 ![Flask](https://img.shields.io/badge/-Flask_2.0.1-green?style=for-the-badge&logo=flask&logoColor=white)  
 ![BERT](https://img.shields.io/badge/-BERT-orange?style=for-the-badge)  
 
@@ -31,7 +31,7 @@ In today's data-driven world, unstructured data management is vital. ClustR empl
 ## 🛠 **Tech Stack**  
 
 ### **🧑‍💻 Languages & Frameworks**  
-- 🐍 **Python 3.9**  
+- 🐍 **Python 3.10**  
 - 🌐 **Flask** (Web Framework)  
 
 ### **📚 Libraries**  
@@ -61,7 +61,7 @@ In today's data-driven world, unstructured data management is vital. ClustR empl
 
 ### **💡 Pre-requisites**  
 Ensure you have the following installed:  
-- 🐍 Python 3.9+  
+- 🐍 Python 3.10+  
 - 🛠 pip (Python package manager)  
 
 ### **⚙️ Installation**  
