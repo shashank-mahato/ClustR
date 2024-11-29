@@ -128,8 +128,3 @@ ClustR is designed to **revolutionize document classification** by reducing manu
 
 ---
 
-## ⚠️ **Disclaimer**  
-
-This project is built for educational and research purposes. It may require further customization to meet the security, privacy, and compliance standards of production environments.  
-
----
