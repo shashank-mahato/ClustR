@@ -1,7 +1,18 @@
-flask==2.2.2
 joblib==1.1.0
 scikit-learn==1.0.2
 transformers==4.19.0
 numpy==1.21.6
-openai==0.27.0  # If using GPT-3.5 integration
-gunicorn==20.1.0  # WSGI HTTP Server for production
+flask==2.0.3
+numpy==1.21.6
+joblib==1.1.0
+groq==1.0.1
+torch==1.13.1
+transformers==4.24.0
+werkzeug==2.1.2
+PyPDF2==1.26.0
+python-docx==0.8.11
+scikit-learn==1.0.2
+pdfplumber==0.5.28
+pdf2image==1.16.3
+pytesseract==0.3.10
+
