@@ -1,0 +1,7 @@
+flask==2.2.2
+joblib==1.1.0
+scikit-learn==1.0.2
+transformers==4.19.0
+numpy==1.21.6
+openai==0.27.0  # If using GPT-3.5 integration
+gunicorn==20.1.0  # WSGI HTTP Server for production

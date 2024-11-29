@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User - Upload Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #212529;
+            --background-dark: #212529;
+            --text-dark: #f8f9fa;
+            --accent-color: #007bff;
+            --button-color: #28a745;
+            --button-text-color: white;
+            --input-border-color: #ced4da;
+            --input-dark-bg: #343a40;
+            --input-dark-text: #f8f9fa;
+            --label-dark-color: #61dafb;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            height: 100%;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 600px;
+            margin-top: 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--accent-color);
+        }
+
+        label {
+            font-size: 1.1rem;
+            color: #343a40;
+            margin-bottom: 10px;
+            display: block;
+            transition: color 0.3s;
+        }
+
+        input[type="file"] {
+            font-size: 1rem;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            border: 1px solid var(--input-border-color);
+            width: 100%;
+            max-width: 400px;
+            transition: border-color 0.3s, background-color 0.3s, color 0.3s;
+            background-color: #f8f9fa;
+            color: var(--text-light);
+        }
+
+        input[type="file"]:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            background-color: var(--button-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            border: none;
+            background: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .container {
+            background-color: #343a40;
+            color: var(--text-dark);
+        }
+
+        .dark-mode label {
+            color: var(--label-dark-color);
+        }
+
+        .dark-mode input[type="file"] {
+            background-color: var(--input-dark-bg);
+            color: var(--input-dark-text);
+            border-color: var(--input-dark-text);
+        }
+
+        .dark-mode input[type="file"]:focus {
+            border-color: #61dafb;
+        }
+
+        .dark-mode button {
+            background-color: #17a2b8;
+        }
+
+        .dark-mode button:hover {
+            background-color: #138496;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <div class="container">
+        <h2>Upload Your Document</h2>
+        <form action="/submit_document" method="POST" enctype="multipart/form-data">
+            <label for="document">
+                <i class="fas fa-upload"></i> Select a document to upload:
+            </label><br>
+            <input type="file" name="document" accept=".txt,.pdf,.docx" required><br><br>
+            <button type="submit">
+                <i class="fas fa-cloud-upload-alt"></i> Upload Document
+            </button>
+        </form>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 0, "color": "#000000" }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "repulse": { "distance": 100, "duration": 0.4 },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>

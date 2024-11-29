@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moderator Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #212529;
+            --background-dark: #212529;
+            --text-dark: #f8f9fa;
+            --accent-color: #007bff;
+            --secondary-color: #6610f2;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1, h2 {
+            margin: 0 0 20px;
+            color: var(--accent-color);
+        }
+
+        .document-list {
+            list-style-type: none;
+            padding: 0;
+            max-height: 300px; /* Limit height for vertical scrolling */
+            overflow-y: auto; /* Enable vertical scrolling */
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            background-color: #f1f1f1;
+        }
+
+        .document-list::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .document-list::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            border-radius: 5px;
+        }
+
+        .document-list li {
+            margin: 5px;
+            padding: 15px;
+            background: #fff;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .document-list li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: #fff;
+        }
+
+        a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #212529, #343a40);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .container {
+            background-color: #343a40;
+            color: var(--text-dark);
+        }
+
+        .dark-mode .document-list {
+            background-color: #444;
+        }
+
+        .dark-mode .document-list li {
+            background-color: #555;
+        }
+
+        .dark-mode .document-list li:hover {
+            background: linear-gradient(135deg, #218838, #28a745);
+        }
+
+        .dark-mode a {
+            color: #61dafb;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <div class="container">
+        <h1>Moderator Dashboard</h1>
+        <h2>Documents to Review:</h2>
+
+        {% if documents %}
+            <ul class="document-list">
+                {% for document in documents %}
+                    <li>
+                        <a href="{{ url_for('review_document', document_id=document) }}">{{ document }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No documents available for Review</p>
+        {% endif %}
+    </div>
+
+    <script>
+        // Initialize particles.js for background effects
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 0, "color": "#000000" }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "repulse": { "distance": 100, "duration": 0.4 },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

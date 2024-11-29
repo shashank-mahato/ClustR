@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Result</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #212529;
+            --background-dark: #212529;
+            --text-dark: #f8f9fa;
+            --accent-color: #6610f2;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 90%;
+            max-width: 600px;
+            animation: fadeIn 1s ease-out;
+            z-index: 1;
+            position: relative;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin: 15px 0;
+            color: #6c757d;
+        }
+
+        .highlight {
+            font-weight: 700;
+            color: var(--success-color);
+        }
+
+        a {
+            display: inline-block;
+            font-size: 1rem;
+            padding: 12px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            color: #fff;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
+            font-size: 20px;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #212529, #343a40);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .container {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .dark-mode h2 {
+            color: #61dafb;
+        }
+
+        .dark-mode a {
+            background: linear-gradient(90deg, #138496, #17a2b8);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <div class="container">
+        <h2>Review Result</h2>
+        <p><strong>Topic:</strong> <span class="highlight">{{ new_topic }}</span></p>
+
+        {% if message %}
+            <p><strong>Message:</strong> {{ message }}</p>
+        {% else %}
+            <p><strong>Message:</strong> Topic '<span class="highlight">{{ new_topic }}</span>' has been added to the existing cluster.</p>
+        {% endif %}
+
+        <p><strong>Retraining Status:</strong> <span class="highlight">Retraining initiated with the new topic.</span></p>
+
+        <a href="/moderator_dashboard">
+            <i class="fas fa-arrow-left"></i> Back to Moderator Dashboard
+        </a>
+    </div>
+
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 5, "random": true },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false
+                }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "repulse" } },
+                "modes": { "repulse": { "distance": 100, "duration": 0.4 } }
+            },
+            "retina_detect": true
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>

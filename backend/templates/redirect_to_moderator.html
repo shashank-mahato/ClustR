@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirected to Moderator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #212529;
+            --background-dark: #212529;
+            --text-dark: #f8f9fa;
+            --accent-color: #007bff;
+            --button-color: #28a745;
+            --link-color: #61dafb;
+            --neutral-blue: #5c6bc0; /* Softer blue */
+            --soft-green: #66bb6a; /* Calming green */
+            --simple-black: #000000; /* Pure black for text */
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            overflow-y: auto; /* Allow scrolling on the entire page */
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 700px;
+            margin-top: 40px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: #007bff;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin: 15px 0;
+            color: var(--neutral-blue); /* Softer blue */
+        }
+
+        .confidence-score {
+            font-weight: bold;
+            font-size: 1.3rem;
+            color: var(--soft-green); /* Calming green */
+            margin-top: 15px;
+        }
+
+        .document-display {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #fff;
+            text-align: left;
+            word-wrap: break-word;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            color: var(--simple-black); /* Simple black text */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-family: "Roboto", sans-serif; /* Basic font */
+        }
+
+        .document-display p {
+            margin: 0;
+            padding: 5px 0;
+        }
+
+        .document-display strong {
+            font-weight: normal;
+            color: #007bff;
+        }
+
+        a {
+            color: var(--link-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #007bff;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            background-color: var(--button-color);
+            color: var(--text-light);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #218838;
+            transform: scale(1.05);
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px;
+            border: none;
+            background: none;
+            font-size: 18px;
+            cursor: pointer;
+            color: #fff;
+            transition: transform 0.2s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .dark-mode {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .container {
+            background-color: var(--background-dark);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .document-display {
+            background-color: var(--background-dark);
+            border-color: var(--text-dark);
+        }
+
+        .dark-mode a {
+            color: var(--link-color);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <div class="container">
+        <h2>Document Submitted for Human Evaluation</h2>
+        <p>Your document is being reviewed by a moderator.</p>
+        <p class="confidence-score"><strong>Confidence Score:</strong> {{ confidence_score }}%</p>
+
+        <div class="document-display">
+            <p><strong>Document:</strong></p>
+            <p>{{ document }}</p>
+        </div>
+
+        <p>We could not confidently classify your document. It has been forwarded to our moderation team for review.</p>
+        <p>Please check back later or try uploading another document.</p>
+
+        <button onclick="window.location.href='/user'">
+            <i class="fas fa-cloud-upload-alt"></i> Upload Another Document
+        </button>
+    </div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 0, "color": "#000000" }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "repulse": { "distance": 100, "duration": 0.4 },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #212529;
+            --background-dark: #212529;
+            --text-dark: #f8f9fa;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .card {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .welcome-text {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #007bff;
+        }
+
+        .highlight {
+            color: #6610f2;
+            font-size: 2.8rem;
+        }
+
+        .description {
+            font-size: 1rem;
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .role-button {
+            font-size: 1rem;
+            padding: 15px 20px;
+            border-radius: 8px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            background-size: 200%;
+            animation: gradient-move 3s infinite;
+            transition: transform 0.2s;
+        }
+
+        .role-button:hover {
+            transform: scale(1.1);
+        }
+
+        .user-button {
+            background: linear-gradient(90deg, #28a745, #34ce57);
+        }
+
+        .user-button:hover {
+            background: linear-gradient(90deg, #218838, #28a745);
+        }
+
+        .moderator-button {
+            background: linear-gradient(90deg, #17a2b8, #20c5d8);
+        }
+
+        .moderator-button:hover {
+            background: linear-gradient(90deg, #138496, #17a2b8);
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #212529, #343a40);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .card {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .dark-mode form button {
+            background-color: #6610f2;
+        }
+
+        .call-to-action {
+            font-size: 1rem;
+            margin-top: 20px;
+            color: #6c757d;
+            animation: pulse 1.5s infinite;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #eaeaea;
+        }
+
+        footer a {
+            color: #eaeaea;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: #fff;
+        }
+
+        .scroll-to-bottom {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #6610f2;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            padding: 15px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .scroll-to-bottom:hover {
+            transform: scale(1.2);
+        }
+
+        @keyframes gradient-move {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <div class="card">
+        <h1 class="welcome-text">Welcome to <br>  
+            <span class="highlight">ClustR</span>
+        </h1>
+        <p class="description">Easily classify documents with the help of AI. Choose your role to get started!</p>
+        <div class="buttons-container">
+            <form method="GET" action="/user">
+                <button class="role-button user-button" type="submit" title="Upload your documents to classify them">
+                    <i class="fas fa-user"></i> User
+                </button>
+            </form>
+            <form method="GET" action="/moderator">
+                <button class="role-button moderator-button" type="submit" title="Review low-confidence classifications">
+                    <i class="fas fa-user-shield"></i> Moderator
+                </button>
+            </form>
+        </div>
+        <div class="call-to-action">
+            <span>Choose your role <i class="fas fa-arrow-up"></i></span>
+        </div>
+    </div>
+   
+    <button class="scroll-to-bottom" onclick="scrollToBottom()">
+        <i class="fas fa-chevron-down"></i>
+    </button>
+    <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 100,
+                    "density": { "enable": true, "value_area": 800 }
+                },
+                "color": { "value": "#ffffff" },
+                "shape": {
+                    "type": "circle",
+                    "stroke": { "width": 0, "color": "#000000" }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": { "enable": false }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#ffffff",
+                    "opacity": 0.4,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "events": {
+                    "onhover": { "enable": true, "mode": "repulse" },
+                    "onclick": { "enable": true, "mode": "push" }
+                },
+                "modes": {
+                    "repulse": { "distance": 100, "duration": 0.4 },
+                    "push": { "particles_nb": 4 }
+                }
+            },
+            "retina_detect": true
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function scrollToBottom() {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+        }
+    </script>
+</body>
+</html>

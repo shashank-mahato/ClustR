@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <style>
+        :root {
+            --background-light: #f8f9fa;
+            --text-light: #212529;
+            --background-dark: #212529;
+            --text-dark: #f8f9fa;
+            --accent-color: #007bff;
+            --danger-color: #dc3545;
+            --dark-accent: #61dafb;
+            --dark-border: #444;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #007bff, #6610f2);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            text-align: center;
+            overflow-y: auto;
+        }
+
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            margin: 40px auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            position: relative;
+            z-index: 1;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h2, h3 {
+            margin: 10px 0;
+            color: var(--accent-color);
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin: 15px 0;
+            word-wrap: break-word;
+        }
+
+        .document-display, .suggested-topic-display {
+            max-height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #fff;
+            text-align: left;
+            margin-bottom: 20px;
+            color: var(--text-light);
+        }
+
+        .document-display::-webkit-scrollbar,
+        .suggested-topic-display::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .document-display::-webkit-scrollbar-thumb,
+        .suggested-topic-display::-webkit-scrollbar-thumb {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            border-radius: 5px;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            color: var(--text-light);
+            background-color: #fff;
+        }
+
+        textarea::placeholder {
+            color: #888;
+        }
+
+        button {
+            background: linear-gradient(90deg, #007bff, #6610f2);
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.3s, background 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: linear-gradient(90deg, #0056b3, #4c0099);
+        }
+
+        .danger-button {
+            background: linear-gradient(90deg, #dc3545, #ff6b6b);
+        }
+
+        .danger-button:hover {
+            background: linear-gradient(90deg, #c82333, #ff3b3b);
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+            z-index: 2;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.2);
+        }
+
+        .dark-mode {
+            background: linear-gradient(135deg, #212529, #343a40);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .container {
+            background-color: #343a40;
+            color: var(--text-dark);
+        }
+
+        .dark-mode h2, .dark-mode h3 {
+            color: var(--dark-accent);
+        }
+
+        .dark-mode .document-display, 
+        .dark-mode .suggested-topic-display {
+            background-color: #444;
+            border: 1px solid var(--dark-border);
+            color: var(--text-dark);
+        }
+
+        .dark-mode textarea {
+            background-color: #555;
+            color: var(--text-dark);
+            border: 1px solid var(--dark-border);
+        }
+
+        .dark-mode textarea::placeholder {
+            color: #ccc;
+        }
+
+        .dark-mode button {
+            background: linear-gradient(90deg, var(--dark-accent), #4c0099);
+        }
+
+        .dark-mode button:hover {
+            background: linear-gradient(90deg, #007bff, var(--dark-accent));
+        }
+
+        .dark-mode .danger-button {
+            background: linear-gradient(90deg, #ff6b6b, #c82333);
+        }
+
+        .dark-mode .danger-button:hover {
+            background: linear-gradient(90deg, #ff3b3b, #dc3545);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">🌙</button>
+    <div class="container">
+        <h2>Review Document</h2>
+        <h3>Document Content:</h3>
+        <div class="document-display">
+            <p>{{ document }}</p>
+        </div>
+
+        <h3>Suggested Topic:</h3>
+        <div class="suggested-topic-display">
+            <p>{{ topic_suggestion }}</p>
+        </div>
+
+        <form method="POST">
+            <label for="new_topic_cluster">Enter the topic:</label><br>
+            <textarea name="new_topic_cluster" rows="4" placeholder="Enter new topic here..."></textarea><br><br>
+
+            <label for="document_content">Document Content:</label><br>
+            <textarea name="document_content" rows="4" style="display:none;">{{ document }}</textarea><br><br>
+
+            <button type="submit">
+                <i class="fas fa-check-circle"></i> Confirm Topic
+            </button>
+            <button type="submit" formaction="{{ url_for('discard_document', document_id=document_id) }}" formmethod="POST" class="danger-button">
+                <i class="fas fa-trash-alt"></i> Discard Document
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Initialize particles.js for background effects
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#ffffff" },
+                "shape": { "type": "circle", "stroke": { "width": 0, "color": "#000000" } },
+                "opacity": { "value": 0.5, "random": true },
+                "size": { "value": 5, "random": true },
+                "line_linked": { "enable": true, "distance": 150, "color": "#ffffff", "opacity": 0.4, "width": 1 },
+                "move": { "enable": true, "speed": 2, "direction": "none" }
+            },
+            "interactivity": {
+                "events": { "onhover": { "enable": true, "mode": "repulse" }, "onclick": { "enable": true, "mode": "push" } },
+                "modes": { "repulse": { "distance": 100, "duration": 0.4 }, "push": { "particles_nb": 4 } }
+            },
+            "retina_detect": true
+        });
+
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
+</body>
+</html>
