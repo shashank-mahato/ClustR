@@ -554,4 +554,4 @@ def status():
 
 if __name__ == "__main__":
     logger.debug("Starting Flask application...")
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run()
