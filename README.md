@@ -31,7 +31,7 @@ In today's data-driven world, unstructured data management is vital. ClustR empl
 ## 🛠 **Tech Stack**  
 
 ### **🧑‍💻 Languages & Frameworks**  
-- 🐍 **Python 3.9**  
+- 🐍 **Python 3.10**  
 - 🌐 **Flask** (Web Framework)  
 
 ### **📚 Libraries**  
@@ -61,7 +61,7 @@ In today's data-driven world, unstructured data management is vital. ClustR empl
 
 ### **💡 Pre-requisites**  
 Ensure you have the following installed:  
-- 🐍 Python 3.9+  
+- 🐍 Python 3.10+  
 - 🛠 pip (Python package manager)  
 
 ### **⚙️ Installation**  
