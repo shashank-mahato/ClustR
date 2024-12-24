@@ -1,7 +1,7 @@
 # 🌟 **ClustR** 🌟
 ### *Adaptive Self-Bootstrapping Document Classification System*  
 
-![Python](https://img.shields.io/badge/-Python_3.9-blue?style=for-the-badge&logo=python&logoColor=white)  
+![Python](https://img.shields.io/badge/-Python_3.10-blue?style=for-the-badge&logo=python&logoColor=white)  
 ![Flask](https://img.shields.io/badge/-Flask_2.0.3-green?style=for-the-badge&logo=flask&logoColor=white)  
 ![BERT](https://img.shields.io/badge/-BERT-orange?style=for-the-badge)  
 
